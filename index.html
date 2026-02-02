@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>RB3 Pixel | Educational Resources</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Official RB3 Pixel educational site. Providing students with lessons, guides, and resources on Computer Science and Internet Research.">
+    <meta name="google-site-verification" content="t_mQE5KSeZJ_5f-377oAJWoFYmdXDYc4E5IZerHM1ps" />
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <!-- Open Graph for Site Name -->
+    <meta property="og:site_name" content="RB3 Pixel Education" />
+    <meta property="og:title" content="RB3 Pixel | Educational Resources" />
+    <meta property="og:image" content="https://rb3pixel.ddns.net/favicon.png" />
+
+    <!-- Google Schema Markup -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "RB3 Pixel Education",
+        "url": "https://rb3pixel.ddns.net/",
+        "alternateName": ["RB3 Pixel", "RB3 Education"]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "RB3 Pixel Educational Resources",
+        "learningResourceType": "Educational Tool",
+        "description": "Providing educational tutorials and guides for safe internet research."
+      }
+    ]
+    </script>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --header-bg: #1e1e1e;
+            --accent-color: #6c5ce7;
+            --accent-hover: #5649c0;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            height: 60px;
+            background-color: var(--header-bg);
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #333;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: radial-gradient(circle at top, #1e1e1e 0%, #121212 70%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #fff, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background-color: var(--accent-hover);
+        }
+
+        /* Content Sections */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #555;
+            font-size: 14px;
+            border-top: 1px solid #333;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="brand"><span>🎓</span> RB3 Pixel Education</div>
+    </header>
+
+    <div class="hero">
+        <h1>Advanced Research & Learning Tool</h1>
+        <p>A secure, managed environment for Computer Science students to explore web architecture, security protocols,
+            and digital infrastructure.</p>
+        <a href="browser.html" class="cta-button">🚀 Launch Research Session</a>
+    </div>
+
+    <div class="container">
+        <section id="about">
+            <h2>About RB3 Pixel</h2>
+            <p>
+                RB3 Pixel is a leading educational platform dedicated to <strong>Computer Science and Internet
+                    Research</strong>.
+                We provide students, researchers, and educators with specialized tools to explore the digital landscape
+                in a safe, guaranteed, and isolated environment.
+            </p>
+            <p>
+                Our mission is to democratize access to advanced web analysis tools. Unlike standard browsing, our
+                <strong>Educational Research Browser</strong> offers a controlled viewport into the web, allowing
+                students to
+                inspect network traffic, analyze web security headers, and understand the fundamental architecture of
+                the modern internet
+                without exposing their local networks to risk.
+            </p>
+        </section>
+
+        <section id="features">
+            <h2>Core Educational Features</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🔒 Safe Research Environment</h3>
+                    <p>Isolated containers ensure that students can study malware behavior, phishing patterns, and web
+                        exploits without user risk. Perfect for cybersecurity curriculum.</p>
+                </div>
+                <div class="card">
+                    <h3>⏱️ Transient Sessions</h3>
+                    <p>Every research session is ephemeral. Data is automatically sanitized upon termination, teaching
+                        the principles of digital footprint management and privacy.</p>
+                </div>
+                <div class="card">
+                    <h3>📂 Asset Management</h3>
+                    <p>Integrated tools for managing downloads and research assets, streamlining the data collection
+                        process for academic papers and research projects.</p>
+                </div>
+                <div class="card">
+                    <h3>🖼️ High-Fidelity Rendering</h3>
+                    <p>Pixel-perfect rendering ensures that UI/UX students see exactly what is intended, supporting
+                        design capability studies across different viewports.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 RB3 Pixel Education. All Rights Reserved.</p>
+        <p style="margin-top:5px; opacity:0.5; font-size:0.8rem">
+            <a href="status.html" style="color:inherit; text-decoration:none">Admin Status</a>
+        </p>
+        <p>For educational use only.</p>
+    </footer>
+
+</body>
+
+</html>

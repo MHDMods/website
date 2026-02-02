@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Status - RB3 Pixel</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <style>
+        :root {
+            --bg-color: #0d0d12;
+            --card-bg: #16161e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #949494;
+            --accent: #7c3aed;
+            /* Violet */
+            --accent-hover: #6d28d9;
+            --danger: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .login-container {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #333;
+        }
+
+        .dashboard-container {
+            display: none;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #0a0a0c;
+            color: white;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        .btn-danger:hover {
+            opacity: 0.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #2a2a35;
+        }
+
+        .stat-val {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid #2a2a35;
+        }
+
+        th {
+            background: #1f1f2e;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-running {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .status-dead {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+
+        .refresh-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .last-updated {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Dashboard (Visible by Default) -->
+    <div class="dashboard-container" id="dashboard" style="display:block">
+        <div class="refresh-bar">
+            <h1>📊 System Status</h1>
+            <div>
+                <span id="updateTime" class="last-updated">Updating...</span>
+                <button onclick="fetchStatus()"
+                    style="background:#2a2a35; color:white; margin-left:10px">Refresh</button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Active Sessions</div>
+                <div class="stat-val" id="countVal">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Port Range</div>
+                <div class="stat-val" id="rangeVal" style="font-size:1.5rem">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Server Mode</div>
+                <div class="stat-val" id="modeVal" style="font-size:1.5rem; color:var(--success)">-</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Session ID</th>
+                    <th>Display</th>
+                    <th>VNC Port</th>
+                    <th>WS Port</th>
+                    <th>Process Status</th>
+                </tr>
+            </thead>
+            <tbody id="sessionTable">
+                <!-- Rows here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const API_URL = window.location.protocol + "//" + window.location.hostname + ":6081/status";
+        // STOP_URL removed as it is no longer used by UI
+
+        // Auto Load
+        fetchStatus();
+
+        async function fetchStatus() {
+            try {
+                const res = await fetch(API_URL);
+                const data = await res.json();
+                renderData(data);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function renderData(data) {
+            document.getElementById('countVal').innerText = data.count;
+            document.getElementById('rangeVal').innerText = data.port_range || "6100-6200";
+            document.getElementById('modeVal').innerText = data.info || "Standard";
+
+            const tbody = document.getElementById('sessionTable');
+            tbody.innerHTML = "";
+
+            data.sessions.forEach(s => {
+                const tr = document.createElement('tr');
+
+                // Status Badges
+                const statuses = s.status.map(st => {
+                    const cls = st === 'Running' ? 'status-running' : 'status-dead';
+                    return `<span class="status-badge ${cls}">${st}</span>`;
+                }).join(" ");
+
+                tr.innerHTML = `
+                    <td style="font-family:monospace">${s.id}</td>
+                    <td>:${s.display}</td>
+                    <td>${s.vnc_port}</td>
+                    <td>${s.ws_port}</td>
+                    <td>${statuses}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const now = new Date();
+            document.getElementById('updateTime').innerText = "Last updated: " + now.toLocaleTimeString();
+        }
+
+        // Auto Refresh every 5s
+        setInterval(() => {
+            if (document.getElementById('dashboard').style.display === 'block') {
+                fetchStatus();
+            }
+        }, 5000);
+
+    </script>
+</body>
+
+</html>
